@@ -45,10 +45,8 @@ async fn main() -> anyhow::Result<()> {
 
     match args.cmd {
         Commands::Serve => {
-            // build our application with a route
             let app = Router::new().layer(TraceLayer::new_for_http());
 
-            // run our app with hyper, listening globally on port 3000
             let listener =
                 tokio::net::TcpListener::bind(format!("{}:{}", &config.address, &config.port))
                     .await?;
